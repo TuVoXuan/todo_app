@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:todo_app/pages/calendar.dart';
 import 'package:todo_app/pages/home.dart';
+import 'package:todo_app/widgets/svg_assets.dart';
 import 'package:todo_app/widgets/svg_icon.dart';
 
 class BaseScaffold extends StatelessWidget {
@@ -10,11 +11,15 @@ class BaseScaffold extends StatelessWidget {
   const BaseScaffold({super.key, required this.body});
 
   static final List<Map<String, dynamic>> tabs = [
-    {'route': Home.routeName, 'icon': 'home', 'activeIcon': 'homeSolid'},
+    {
+      'route': Home.routeName,
+      'icon': SvgIconName.home,
+      'activeIcon': SvgIconName.homeSolid,
+    },
     {
       'route': Calendar.routeName,
-      'icon': 'calendar',
-      'activeIcon': 'calendarSolid',
+      'icon': SvgIconName.calendar,
+      'activeIcon': SvgIconName.calendarSolid,
     },
   ];
 

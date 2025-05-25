@@ -3,10 +3,12 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:todo_app/models/todo.dart';
 import 'package:todo_app/utils/colors.dart';
+import 'package:todo_app/widgets/svg_assets.dart';
 import 'package:todo_app/widgets/svg_icon.dart';
 
 class TodoItem extends StatelessWidget {
   final Todo todo;
+
   const TodoItem({super.key, required this.todo});
 
   @override
@@ -22,7 +24,9 @@ class TodoItem extends StatelessWidget {
             onPressed: (context) {},
             backgroundColor: const Color(0xFFE53935),
             borderRadius: BorderRadius.circular(8),
-            child: Center(child: SvgIcon(name: 'trash', color: Colors.white)),
+            child: Center(
+              child: SvgIcon(name: SvgIconName.trash, color: Colors.white),
+            ),
             // child: Icon(Icons.delete, size: 24, color: Colors.white),
           ),
         ],
@@ -91,10 +95,10 @@ class TodoItem extends StatelessWidget {
                 ),
                 Row(
                   children: [
-                    SvgPicture.asset(
-                      'assets/icons/time-circle.svg',
-                      height: 15,
-                      width: 15,
+                    SvgIcon(
+                      name: SvgIconName.clock,
+                      size: 15,
+                      color: Color(0xFF78828A),
                     ),
                     SizedBox(width: 8),
                     const Text(
@@ -117,6 +121,7 @@ class TodoItem extends StatelessWidget {
 
 class PriorityBadge extends StatelessWidget {
   final String priority;
+
   const PriorityBadge({super.key, required this.priority});
 
   @override
@@ -161,6 +166,7 @@ class PriorityBadge extends StatelessWidget {
 class CircleCheckbox extends StatefulWidget {
   final bool value;
   final ValueChanged<bool> onChanged;
+
   const CircleCheckbox({
     super.key,
     required this.value,
@@ -200,7 +206,11 @@ class _CircleCheckboxState extends State<CircleCheckbox> {
         child:
             widget.value
                 ? Center(
-                  child: SvgIcon(name: 'check', size: 10, color: Colors.white,),
+                  child: SvgIcon(
+                    name: SvgIconName.check,
+                    size: 10,
+                    color: Colors.white,
+                  ),
                 )
                 : null,
       ),

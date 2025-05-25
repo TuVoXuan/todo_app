@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:todo_app/models/todo.dart';
-import 'package:todo_app/widgets/svg_icon.dart';
 import 'package:todo_app/widgets/todo_item.dart';
 
 final List<Todo> todos = [
@@ -42,7 +41,9 @@ class Home extends StatelessWidget {
                 children: [
                   CircleAvatar(
                     radius: 40,
-                    backgroundImage: AssetImage('assets/images/avatar.jpg'),
+                    backgroundImage: const AssetImage(
+                      'assets/images/avatar.jpg',
+                    ),
                   ),
                   SizedBox(width: 15),
                   Column(

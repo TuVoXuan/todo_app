@@ -5,9 +5,10 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:todo_app/widgets/svg_assets.dart';
 
 class SvgIcon extends StatelessWidget {
-  final String name;
+  final SvgIconName name;
   final double size;
   final Color color;
+  static final _cache = <String, Widget>{};
 
   const SvgIcon({
     super.key,
@@ -33,11 +34,17 @@ class SvgIcon extends StatelessWidget {
   }
 
   Widget _renderSVG(String svgData) {
-    return SvgPicture.string(
+    if (_cache.containsKey(name)) {
+      return _cache[name]!;
+    }
+
+    final widget = SvgPicture.string(
       svgData,
       width: size,
       height: size,
       colorFilter: ColorFilter.mode(color, BlendMode.srcIn),
     );
+    _cache[name.name] = widget;
+    return widget;
   }
 }
