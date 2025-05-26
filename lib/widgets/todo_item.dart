@@ -71,7 +71,7 @@ class TodoItem extends StatelessWidget {
                     ),
                   ],
                 ),
-                PriorityBadge(priority: todo.priority.name),
+                PriorityBadge(priority: todo.priority),
               ],
             ),
             Padding(

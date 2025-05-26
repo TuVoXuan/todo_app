@@ -4,17 +4,17 @@ import 'package:todo_app/models/todo.dart';
 import 'package:todo_app/widgets/todo_item.dart';
 
 final List<Todo> todos = [
-  Todo(title: 'do home work', priority: Priority.high, done: true),
+  Todo(title: 'do home work', priority: Priority.high.name, done: true),
   Todo(
     title: 'playing game',
     description: 'play honor of king',
-    priority: Priority.low,
+    priority: Priority.low.name,
     done: false,
   ),
   Todo(
     title: 'go gym',
     description: 'go to the nearest gym',
-    priority: Priority.medium,
+    priority: Priority.medium.name,
     done: true,
   ),
 ];
