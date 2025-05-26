@@ -7,6 +7,12 @@ class TodoItemForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Todo Item Form'),
+        backgroundColor: Color(0xFF3DCAB1),
+      ),
+      body: Center(child: Text('Todo Item Form Content Goes Here')),
+    );
   }
 }

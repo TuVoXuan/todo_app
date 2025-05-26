@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:todo_app/models/todo.dart';
 import 'package:todo_app/utils/colors.dart';
 import 'package:todo_app/widgets/svg_assets.dart';

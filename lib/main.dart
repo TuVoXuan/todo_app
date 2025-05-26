@@ -18,9 +18,12 @@ class MyApp extends StatelessWidget {
   }
 }
 
+final GlobalKey<NavigatorState> _rootNavigatorKey = GlobalKey<NavigatorState>();
 final _shellNavigatorKey = GlobalKey<NavigatorState>();
 
 final GoRouter _router = GoRouter(
+  debugLogDiagnostics: true,
+  navigatorKey: _rootNavigatorKey,
   initialLocation: Home.routeName,
   routes: [
     ShellRoute(
@@ -31,18 +34,29 @@ final GoRouter _router = GoRouter(
           name: Home.routeName,
           path: Home.routeName,
           builder: (context, state) => const Home(),
+          routes: [
+            GoRoute(
+              name: TodoItemForm.routeName,
+              path: TodoItemForm.routeName,
+              builder: (context, state) => const TodoItemForm(),
+              parentNavigatorKey: _rootNavigatorKey,
+            ),
+          ],
         ),
         GoRoute(
           name: Calendar.routeName,
           path: Calendar.routeName,
           builder: (context, state) => const Calendar(),
+          routes: [
+            GoRoute(
+              name: '${Calendar.routeName}${TodoItemForm.routeName}',
+              path: TodoItemForm.routeName,
+              builder: (context, state) => const TodoItemForm(),
+              parentNavigatorKey: _rootNavigatorKey,
+            ),
+          ],
         ),
       ],
-    ),
-    GoRoute(
-      name: TodoItemForm.routeName,
-      path: TodoItemForm.routeName,
-      builder: (context, state) => const TodoItemForm(),
     ),
   ],
 );
