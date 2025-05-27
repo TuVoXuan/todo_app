@@ -1,36 +1,22 @@
 import 'package:flutter/material.dart';
 
-class TimePicker extends StatefulWidget {
-  final String label;
-  final String? hintText;
+class TextFieldCustom extends StatelessWidget {
   final TextEditingController controller;
-  const TimePicker({
+  final String? hintText;
+  final String label;
+  final int? maxLines;
+  final TextInputType? keyboardType;
+  final Function(String)? onValidate;
+
+  const TextFieldCustom({
     super.key,
     required this.controller,
-    required this.label,
+    this.onValidate,
     this.hintText,
+    required this.label,
+    this.maxLines,
+    this.keyboardType,
   });
-
-  @override
-  State<TimePicker> createState() => _TimePickerState();
-}
-
-class _TimePickerState extends State<TimePicker> {
-  TimeOfDay selectedTime = TimeOfDay.now();
-
-  Future<void> _selectTime() async {
-    final TimeOfDay? picked = await showTimePicker(
-      context: context,
-      initialTime: selectedTime,
-    );
-
-    if (picked != null && picked != selectedTime) {
-      setState(() {
-        selectedTime = picked;
-        widget.controller.text = picked.format(context);
-      });
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +24,7 @@ class _TimePickerState extends State<TimePicker> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          widget.label,
+          label,
           style: TextStyle(
             fontSize: 14,
             height: 1.57,
@@ -48,11 +34,13 @@ class _TimePickerState extends State<TimePicker> {
         ),
         const SizedBox(height: 8),
         TextFormField(
-          controller: widget.controller,
-          readOnly: true,
+          controller: controller,
+          maxLines: maxLines,
+          keyboardType: keyboardType,
+          validator:
+              onValidate != null ? (value) => onValidate!(value ?? '') : null,
           decoration: InputDecoration(
-            suffixIcon: Icon(Icons.access_time),
-            hintText: widget.hintText,
+            hintText: hintText,
             hintStyle: TextStyle(
               fontSize: 16,
               height: 1.5,
@@ -70,7 +58,6 @@ class _TimePickerState extends State<TimePicker> {
             filled: true,
             fillColor: Color(0xFFF6F8FE),
           ),
-          onTap: _selectTime,
         ),
       ],
     );
