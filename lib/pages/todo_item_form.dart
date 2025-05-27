@@ -26,14 +26,7 @@ class _TodoItemFormState extends State<TodoItemForm> {
   final TextEditingController _reminderTimesController =
       TextEditingController();
   final TextEditingController _timeReminderController = TextEditingController();
-  final TextEditingController _priorityController = TextEditingController();
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    _priorityController.text = priorityOptions.first['value'];
-  }
+  String _selectedPriority = 'low';
 
   @override
   void dispose() {
@@ -45,7 +38,9 @@ class _TodoItemFormState extends State<TodoItemForm> {
   }
 
   void _handleSelectPriority(String value) {
-    _priorityController.text = value;
+    setState(() {
+      _selectedPriority = value;
+    });
   }
 
   void _handleSubmitForm() {
@@ -54,6 +49,7 @@ class _TodoItemFormState extends State<TodoItemForm> {
       print('desc: ${_descriptionController.text}');
       print('reminderTimes: ${_reminderTimesController.text}');
       print('timeReminder: ${_timeReminderController.text}');
+      print('priority: $_selectedPriority');
     } else {
       print('Form is invalid');
     }
@@ -118,7 +114,7 @@ class _TodoItemFormState extends State<TodoItemForm> {
                 Select(
                   label: 'Priority',
                   options: priorityOptions,
-                  selectedValue: _priorityController.text,
+                  selectedValue: _selectedPriority,
                   onSelect: _handleSelectPriority,
                 ),
                 SizedBox(height: 16),

@@ -24,7 +24,7 @@ class _TimePickerState extends State<TimePicker> {
       initialTime: selectedTime,
     );
 
-    if (picked != null && picked != selectedTime) {
+    if (picked != null) {
       setState(() {
         selectedTime = picked;
         widget.controller.text = picked.format(context);
