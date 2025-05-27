@@ -5,13 +5,18 @@ import 'package:todo_app/models/todo.dart';
 class TodoService {
   final DatabaseHelper _databaseHelper = DatabaseHelper();
 
-  Future<int> insertTodo(Todo todo) async {
-    final db = await _databaseHelper.database;
-    return await db.insert(
-      'todos',
-      todo.toMap(),
-      conflictAlgorithm: ConflictAlgorithm.replace,
-    );
+  Future<int?> insertTodo(Todo todo) async {
+    try {
+      final db = await _databaseHelper.database;
+      return await db.insert(
+        'todos',
+        todo.toMap(),
+        conflictAlgorithm: ConflictAlgorithm.replace,
+      );
+    } catch (e) {
+      print('Error inserting todo: $e');
+      return null; // Indicate failure
+    }
   }
 
   Future<List<Todo>> getAllTodoForDate(DateTime date) async {

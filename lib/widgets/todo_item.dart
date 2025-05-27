@@ -44,7 +44,10 @@ class TodoItem extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    CircleCheckbox(value: todo.done, onChanged: (value) {}),
+                    CircleCheckbox(
+                      value: todo.done ?? false,
+                      onChanged: (value) {},
+                    ),
                     SizedBox(width: 10),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,

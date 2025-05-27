@@ -7,7 +7,7 @@ class Todo {
   final String? description;
   final int? reminderTimes;
   final String? timeReminder;
-  final bool done;
+  final bool? done;
   final String? createdAt;
 
   Todo({
@@ -15,7 +15,7 @@ class Todo {
     required this.title,
     required this.priority,
     this.description,
-    required this.done,
+    this.done,
     this.reminderTimes,
     this.timeReminder,
     this.createdAt,
@@ -27,7 +27,7 @@ class Todo {
       'title': title,
       'description': description,
       'priority': priority,
-      'done': done ? 1 : 0,
+      'done': done != null && done! ? 1 : 0,
       'reminderTimes': reminderTimes,
       'timeReminder': timeReminder,
       'created_at': createdAt,
