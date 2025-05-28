@@ -48,6 +48,15 @@ class _TodoItemFormState extends State<TodoItemForm> {
   }
 
   void _handleSubmitForm() async {
+    if (!(_timeReminderController.text.isNotEmpty &&
+        _reminderTimesController.text.isNotEmpty)) {
+      SnackBarUtil.showError(
+        context,
+        'Please select time and number of reminders',
+      );
+      return;
+    }
+
     if (_formKey.currentState!.validate()) {
       final todo = Todo(
         title: _titleController.text,
@@ -157,14 +166,14 @@ class _TodoItemFormState extends State<TodoItemForm> {
                 SizedBox(height: 16),
                 TextFieldCustom(
                   controller: _reminderTimesController,
-                  label: 'Reminder Times',
+                  label: 'Reminder Times (optional)',
                   hintText: 'Enter reminder times (e.g., 1)',
                   keyboardType: TextInputType.number,
                 ),
                 SizedBox(height: 16),
                 TimePicker(
                   controller: _timeReminderController,
-                  label: 'Time Reminder',
+                  label: 'Time Reminder (optional)',
                   hintText: 'Tap to select time',
                 ),
                 SizedBox(height: 64),

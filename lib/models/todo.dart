@@ -28,9 +28,8 @@ class Todo {
       'description': description,
       'priority': priority,
       'done': done != null && done! ? 1 : 0,
-      'reminderTimes': reminderTimes,
-      'timeReminder': timeReminder,
-      'created_at': createdAt,
+      'reminder_times': reminderTimes,
+      'time_reminder': timeReminder,
     };
   }
 
